@@ -1,0 +1,61 @@
+<!-- list -->
+<ul class="nav">
+  <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+    <span>Navigasi</span>
+  </li>
+  <li ui-sref-active="active" ng-repeat="item in navList">
+    <a ng-if="item.single" ui-sref="{{item.state}}">
+      <i class="{{item.icon}}"></i>
+      <span class="font-bold">{{item.name}}</span>
+    </a>
+    <!-- Multi Kelas Only -->
+    <a href class="auto" ng-if="item.multiKelas">      
+      <span class="pull-right text-muted">
+        <i class="fa fa-fw fa-angle-right text"></i>
+        <i class="fa fa-fw fa-angle-down text-active"></i>
+      </span>
+      <i class="{{item.icon}}"></i>
+      <span class="font-bold">{{item.name}}</span>
+    </a>
+    <ul class="nav nav-sub dk" ng-if="item.multiKelas">
+      <li class="nav-sub-header" >
+        <a href>
+          <span>{{item.name}}</span>
+        </a>
+      </li>
+      <li ui-sref-active="active" ng-repeat="(key, subItem) in item.subKelasNav | filter: {SubClass:false} | orderBy:'Name'">
+        <a ui-sref="app.datasiswa({ sekolah:'{{subItem.$id}}' })">
+          <span>{{subItem.Name}} </span>
+
+        </a>
+      </li>
+    </ul>
+     <!-- Multi Kelas Only End -->
+     <!-- Multi Nav -->
+    <a href class="auto" ng-if="item.multi">      
+      <span class="pull-right text-muted">
+        <i class="fa fa-fw fa-angle-right text"></i>
+        <i class="fa fa-fw fa-angle-down text-active"></i>
+      </span>
+      <i class="{{item.icon}}"></i>
+      <span class="font-bold">{{item.name}}</span>
+    </a>
+    <ul class="nav nav-sub dk" ng-if="item.multi">
+      <li class="nav-sub-header" >
+        <a href>
+          <span>{{item.name}}</span>
+        </a>
+      </li>
+      <li ui-sref-active="active" ng-repeat="(key, subItem) in item.subNav">
+
+        <a ui-sref="{{subItem.state}}">
+          <span>{{subItem.name}} </span>
+
+        </a>
+      </li>
+    </ul>
+  </li>
+
+  <li class="line dk"></li>
+</ul>
+<!-- / list -->

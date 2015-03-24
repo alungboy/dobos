@@ -1,0 +1,59 @@
+<!-- header -->
+<div class="wrapper bg-light lter b-b">
+    <div class="btn-group m-r-sm">
+        <a ui-sref="app.datasiswa.kelas.new" class="btn btn-sm btn-info" tooltip="Back">New Siswa</a>
+    </div>
+
+    <div class="btn-group m-r-sm">
+        <button class="btn btn-sm btn-default" disabled> <i class="fa fa-search"></i>
+        </button>
+        <input type="text" class="input-sm" placeholder="Search" ng-model="searchText">
+    </div>
+
+
+
+
+
+    <span>Total Siswa: <b>{{ListSiswas.length}}</b></span>
+    <span class="pull-right">
+        <button class="btn btn-sm btn-primary" ng-click="pindahKelas()"> Pindah {{clickSiswaCount()}} Siswa ke Kelas:
+        </button>
+
+        <div style="display: inline-block;" inputclass="input-sm" angucomplete placeholder="Kelas Tujuan" pause="200" selectedobject="kelasTujuan" localdata="listKelasArr" searchfields="Name" titlefield="Name" minlength="1" />
+        <!-- <input type="text" class="input-sm" placeholder="Kelas Tuuan" ng-model="kelasTujuan"> -->
+     
+
+        <b>{{breadCrumb}}</b>    
+    </span>
+</div>
+<!-- / header -->
+<ul class="list-group list-group-lg no-radius m-b-none m-t-n-xxs">
+    <li class="list-group-item clearfix b-l-3x" ng-repeat="(key, value) in ListSiswas | filter:searchText" ng-class="{active:!!selectedSiswas[value.$id]}">
+        <a ng-click="clickSiswa(value)" class="avatar thumb pull-left m-r">
+            <img ng-src="img/gender/{{value.JnsKelamin}}.png">
+        </a>
+        <div class="pull-right text-sm text-muted">
+            <span>
+              TTL: <b>{{value.TempatLahir}}, {{getTglLengkap(value.TglLahir)}}</b>
+              <br> Agama: <b>{{value.Agama}}</b> 
+              <br> Gol Darah: <b>{{value.GolDarah}}</b>
+              <br> Status: <b>{{value.Status}}</b> 
+            </span>
+        </div>
+        <div class="clear">
+            <div>
+                <a class="text-md" ui-sref="app.datasiswa.kelas.detail({ kelas:'{{idKelas}}', noInduk: {{value.$id}} })">
+                    {{value.NamaDepan}}. {{value.NamaBelakang}}
+
+                </a>
+                <span class="label bg-light m-l-sm">{{value.$id}}</span>
+            </div>
+            <div class="text-ellipsis m-t-xs">
+                Iuran Sekolah &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                : <b>Rp.{{value.IuranSekolah | number:0}},-</b>
+                <br> Iuran Pembangunan : <b>Rp.{{value.IuranPembangunan | number:0}},-</b>
+            </div>
+        </div>
+    </li>
+
+</ul>

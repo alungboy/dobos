@@ -1,0 +1,19 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm">
+  <div class="col w-md bg-light dk b-r bg-auto">
+    <div class="wrapper b-b bg">
+      <a class="btn btn-sm btn-default font-bold">{{namaSekolah}}</a>
+    </div>
+    <div class="wrapper">
+      <ul class="nav nav-pills nav-stacked nav-sm">
+        <li ng-repeat="(key, value) in ListKelas | filter:{ParentRef:idSekolah} | orderBy:'Name'" ng-class="{active: activeClass(value.$id)}">
+          <a ui-sref="app.datasiswa.kelas.list({ kelas:'{{value.$id}}' })">
+            {{value.Name}}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div ui-view class="col"></div>
+
+</div>

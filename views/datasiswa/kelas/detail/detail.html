@@ -1,0 +1,209 @@
+<!-- header -->
+<div class="wrapper bg-light lter b-b">
+    <div class="btn-group m-r-sm">
+        <a ui-sref="app.datasiswa.kelas.list" class="btn btn-sm btn-default w-xxs w-auto-xs" tooltip="Back"><i class="fa fa-arrow-left"></i></a>
+        <a ng-click="toEdit()" class="btn btn-sm btn-default w-xxs w-auto-xs" tooltip="Edit"><i class="fa fa-pencil-square-o"></i></a>
+
+    </div>
+    <span class="pull-right"><b>{{breadCrumb}}</b></span>
+</div>
+<!-- / header -->
+
+<div class="wrapper">
+    <div class="row form-horizontal">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-lg-4 control-label input-sm">
+                    No Induk <b class="text-danger">*</b>
+                </label>
+                <div class="col-lg-3">
+                    <input type="text" class="form-control input-sm" placeholder="no Induk" ng-model="DetailSiswa.$id" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-4 control-label input-sm">
+                    Nama Depan <b class="text-danger">*</b>
+                </label>
+                <div class="col-lg-8">
+                    <input type="text" class="form-control input-sm" placeholder="Nama Depan" ng-model="DetailSiswa.NamaDepan" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-4 control-label input-sm">Nama Belakang </label>
+                <div class="col-lg-8">
+                    <input type="text" class="form-control input-sm" placeholder="Nama Belakang" ng-model="DetailSiswa.NamaBelakang" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-4 control-label input-sm">
+                    TTL <b class="text-danger">*</b>
+                </label>
+                <div class="col-lg-3">
+                    <input type="text" class="form-control input-sm" placeholder="Tempat Lahir" ng-model="DetailSiswa.TempatLahir" disabled>
+                </div>
+                <div class="col-lg-5">
+                    <input type="text" class="form-control input-sm" value="{{getTglLengkap(DetailSiswa.TglLahir)}}" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-8 col-lg-offset-4 input-sm">
+                    &nbsp;Tertulis :
+                    <b>{{DetailSiswa.TempatLahir}}, {{getTglLengkap(DetailSiswa.TglLahir)}}</b>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-4 control-label input-sm">Jenis Kelamin <b class="text-danger">*</b> / Gol Darah</label>
+                <div class="col-lg-4">
+                    <select class="form-control input-sm" ng-model="DetailSiswa.JnsKelamin" disabled>
+                        <option value="">(Jenis Kelamin)</option>
+                        <option value="L">Laki-Laki</option>
+                        <option value="P">Perempuan</option>
+                    </select>
+                </div>
+                <div class="col-lg-4">
+                    <select class="form-control input-sm" ng-model="DetailSiswa.GolDarah" disabled>
+                        <option value="">(Golongan Darah)</option>
+                        <option value="A">A</option>
+                        <option value="A-">A-</option>
+                        <option value="A+">A+</option>
+                        <option value="B">B</option>
+                        <option value="B-">B-</option>
+                        <option value="B+">B+</option>
+                        <option value="AB">AB</option>
+                        <option value="AB-">AB-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="O">O</option>
+                        <option value="O-">O-</option>
+                        <option value="O+">O+</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-4 control-label input-sm">Kewarganegaraan <b class="text-danger">*</b> / Agama <b class="text-danger">*</b>
+                </label>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control input-sm" ng-model="DetailSiswa.Kewarganegaraan" disabled>
+                </div>
+                <div class="col-lg-4">
+                    <select class="form-control input-sm" ng-model="DetailSiswa.Agama" disabled>
+                        <option value="">(Agama)</option>
+                        <option value="Kristen Protestan">Kristen Protestan</option>
+                        <option value="Kristen Katolik">Kristen Katolik</option>
+                        <option value="Khonghucu">Khonghucu</option>
+                        <option value="Islam">Islam</option>
+                        <option value="Hindu">Hindu</option>
+                        <option value="Budha">Budha</option>
+                        <option value="Kepercayaan">Kepercayaan</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-4 control-label input-sm">Iuran Sekolah <b class="text-danger">*</b>
+                </label>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control input-sm" placeholder="Iuran Sekolah" value="{{DetailSiswa.IuranSekolah | number:0}}" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-4 control-label input-sm">Iuran Pembangunan <b class="text-danger">*</b>
+                </label>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control input-sm" placeholder="Iuran Pembangunan" value="{{DetailSiswa.IuranPembangunan | number:0}}" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 ">
+            <div class="form-group">
+                <label class="col-lg-3 control-label input-sm">Tgl Masuk Sekolah</label>
+                <div class="col-lg-5">
+                    <input type="text" class="form-control input-sm" value="{{getTglLengkap(DetailSiswa.TglMasukSekolah)}}" disabled>
+                </div>
+                <label class="col-lg-1 control-label input-sm">Pindahan</label>
+                <div class="col-lg-2">
+                    <input type="checkbox" class="form-control input-sm" ng-model="DetailSiswa.Pindahan" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-9 col-lg-offset-3 input-sm">
+                    &nbsp;Tertulis :
+                    <b>{{getTglLengkap(DetailSiswa.TglMasukSekolah)}}</b>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label input-sm">Status <b class="text-danger">*</b>
+                </label>
+                <div class="col-lg-4">
+                    <select class="form-control input-sm" ng-model="DetailSiswa.Status" disabled>
+                        <option value="">(Status)</option>
+                        <option value="Aktif">Aktif</option>
+                        <option value="Lulus">Lulus</option>
+                        <option value="Keluar">Keluar</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label input-sm">Data Ayah</label>
+                <div class="col-lg-5">
+                    <input type="text" class="form-control input-sm" placeholder="Nama Ayah" ng-model="DetailSiswa.NamaAyah" disabled>
+                </div>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control input-sm" placeholder="Pekerjaan" ng-model="DetailSiswa.PekerjaanAyah" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label input-sm">Data Ibu</label>
+                <div class="col-lg-5">
+                    <input type="text" class="form-control input-sm" placeholder="Nama Ibu" ng-model="DetailSiswa.NamaIbu" disabled>
+                </div>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control input-sm" placeholder="Pekerjaan" ng-model="DetailSiswa.PekerjaanIbu" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label input-sm">Data Wali</label>
+                <div class="col-lg-5">
+                    <input type="text" class="form-control input-sm" placeholder="Nama Wali" ng-model="DetailSiswa.NamaWali" disabled>
+                </div>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control input-sm" placeholder="Pekerjaan" ng-model="DetailSiswa.PekerjaanWali" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label input-sm">Alamat Ortu / Wali</label>
+                <div class="col-lg-9">
+                    <input type="text" class="form-control input-sm" placeholder="Alamat Ortu / Wali" ng-model="DetailSiswa.AlamatOrtuWali" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label input-sm">No Kontak Ortu / Wali</label>
+                <div class="col-lg-5">
+                    <input type="text" class="form-control input-sm" placeholder="No HP" ng-model="DetailSiswa.NoHpOrtuWali" disabled>
+                </div>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control input-sm" placeholder="No Tlp Kantor" ng-model="DetailSiswa.MpKantorOrtuWali" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label input-sm">Keterangan</label>
+                <div class="col-lg-9">
+                    <input type="text" class="form-control input-sm" placeholder="Keterangan" ng-model="DetailSiswa.Keterangan" disabled>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <div class="col-lg-8 col-lg-offset-2 text-danger">
+                    Keterangan: Tanda <b>*</b> Wajib Diisi
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-5 col-lg-offset-2">
+                    <a class="btn btn-default w-xs" ui-sref="app.datasiswa.kelas.list">Back</a>
+                    <button class="btn btn-warning w-xs" ng-click="toEdit()">Edit</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
